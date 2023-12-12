@@ -6,13 +6,14 @@ import { commonSelector } from '../../features/common.slice';
 import { getEpubFile } from '../../features/common.api';
 
 const Test: React.FunctionComponent = () => {
-  const { filePath } = useSelector(commonSelector);
+  const { filePath, text } = useSelector(commonSelector);
   const dispatch = useAppDispatch();
   console.log("in test")
-  dispatch(getEpubFile)
+  dispatch(getEpubFile())
     
   return (
-    <>hello</>
+    <div dangerouslySetInnerHTML={{ __html: text }}>
+    </div>
   );
 }
 

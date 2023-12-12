@@ -2,6 +2,7 @@
 export interface CommonState {
   // url to epub file
   filePath: string
+  text: string
 }
 
 // types 

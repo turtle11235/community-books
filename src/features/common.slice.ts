@@ -1,13 +1,14 @@
 import { createSlice, isFulfilled, PayloadAction } from '@reduxjs/toolkit';
 
 import { RootState } from '../app/store';
-import {  } from './common.api';
+import { getEpubFile } from './common.api';
 import { CommonState } from './common.types';
 
 
 const initialState: CommonState = {
   // Elements of the state and their default values
-  filePath: ''
+  filePath: '',
+  text: ''
 }
 
 export const commonSlice = createSlice({
@@ -22,10 +23,9 @@ export const commonSlice = createSlice({
   },
   extraReducers: (builder) => {
     // Asynchronous actions which have to ping the server
-    // builder.addCase(getAllImages.fulfilled, (state, action: PayloadAction<ImageItem[]>) => {
-    //   state.allImages = action.payload;
-    //   state.visibleImages = state.allImages;
-    // });
+    builder.addCase(getEpubFile.fulfilled, (state, action: PayloadAction<string>) => {
+      state.text = action.payload;
+    });
 
   }
 });
